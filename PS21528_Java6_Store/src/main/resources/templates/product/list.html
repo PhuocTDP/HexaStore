@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{:: main})}">
+
+<body>
+    <main>
+        <!-- ***** Main Banner Area Start ***** -->
+        <div class="main-banner" id="top">
+            <!-- <div  class="container-fluid" th:replace="/layout/category.html"></div> -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="left-content">
+                        <div class="thumb">
+                            <div class="inner-content">
+                                <h4>We Are Hexashop</h4>
+                                <span>Awesome, clean &amp; creative HTML5 Template</span>
+                                <div class="main-border-button">
+                                    <a href="#">Purchase Now!</a>
+                                </div>
+                            </div>
+                            <img src="/assets/images/left-banner-image.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="right-content">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4>Women</h4>
+                                            <span>Best Clothes For Women</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4>Women</h4>
+                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
+                                                </p>
+                                                <div class="main-border-button">
+                                                    <a href="#">Discover More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="/assets/images/baner-right-image-01.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4>Men</h4>
+                                            <span>Best Clothes For Men</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4>Men</h4>
+                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
+                                                </p>
+                                                <div class="main-border-button">
+                                                    <a href="#">Discover More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="/assets/images/baner-right-image-02.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4>Kids</h4>
+                                            <span>Best Clothes For Kids</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4>Kids</h4>
+                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
+                                                </p>
+                                                <div class="main-border-button">
+                                                    <a href="#">Discover More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="/assets/images/baner-right-image-03.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="right-first-image">
+                                    <div class="thumb">
+                                        <div class="inner-content">
+                                            <h4>Accessories</h4>
+                                            <span>Best Trend Accessories</span>
+                                        </div>
+                                        <div class="hover-content">
+                                            <div class="inner">
+                                                <h4>Accessories</h4>
+                                                <p>Lorem ipsum dolor sit amet, conservisii ctetur adipiscing elit incid.
+                                                </p>
+                                                <div class="main-border-button">
+                                                    <a href="#">Discover More</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <img src="/assets/images/baner-right-image-04.jpg">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Main Banner Area End ***** -->
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h2>Our Latest Products</h2>
+                        <span>Check out all of our products.</span>
+                        <form th:action="@{/product/search}" method="post">
+                            <input type="text" placeholder="Search . . .  " name="keywords">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div th:each="p: ${items}" class="col-lg-4">
+     
+                    <div class="item">
+                        <div class="thumb">
+                            <div class="hover-content">
+                                <ul>
+                                    <li><a th:href="@{|/product/detail/${p.id}|}"><i class="fa fa-eye"></i></a></li>
+                                    <li><a href="single-product.html"><i class="fa fa-star"></i></a></li>
+                                    <li><a th:attr="ng-click=@{|cart.add(${p.id})|}"><i
+                                                class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <img th:src="@{|/assets/images/${p.image}|}" alt="">
+                        </div>
+                        <div class="down-content">
+                            <h4 th:utext="${p.name}"></h4>
+                            <span>$ [[${p.price}]]</span>
+                            <ul class="stars">
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="pagination">
+                        <ul>
+                            <li>
+                                <a href="#">1</a>
+                            </li>
+                            <li class="active">
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <a href="#">4</a>
+                            </li>
+                            <li>
+                                <a href="#">></a>
+                            </li>
+                        </ul>
+                        <!-- <a th:href="@{|/product/list?p=0|}" class="btn btn-primary">First</a> 
+                        <a th:href="@{|/product/list?p=${page.number-1}|}" class="btn btn-primary">Previous</a> -->
+                        <!-- <a th:href="@{|/product/list?p=${page.number+1}|}" class="btn btn-primary">Next</a>
+                        <a th:href="@{|/product/list?p=${page.totalPages-1}|}" class="btn btn-primary">Last</a> -->
+                        <!-- <ul>
+                            <li>
+                                <a th:href="@{|/product/list?p=${page.totalPages-1}|}" class="btn btn-primary">Last</a>
+
+                            </li>
+                            <li>
+                                <a th:href="@{|/product/list?p=${page.number+1}|}" class="btn btn-primary">Next</a>
+                            </li>
+                        </ul> -->
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

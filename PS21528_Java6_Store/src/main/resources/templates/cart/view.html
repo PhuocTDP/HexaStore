@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{:: main})}">
+
+<body>
+    <main>
+        <!-- ***** Main Banner Area Start ***** -->
+        <div class="page-heading" id="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="inner-content">
+                            <h2>Single Product Page</h2>
+                            <span>Awesome &amp; Creative HTML CSS layout by TemplateMo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ***** Main Banner Area End ***** -->
+
+        <!-- ***** Product Area Starts ***** -->
+        <section class="section" id="product" th:fragment="shopping_cart">
+            <div class="container">
+                <div class="total">
+                    <div class="main-border-button"><a th:attr="ng-click=@{|cart.clear()|}"><i
+                                class="fa fa-remove"></i>Delete All</a>
+                    </div>
+                </div>
+                <br>
+                <div ng-repeat="item in cart.items" class="row">
+                    <div class="col-lg-8">
+                        <div class="left-images">
+                            <img th:src="@{|/assets/images/{{item.image}}|}" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="right-content">
+                            <h4>{{item.name}}</h4>
+                            <span class="price">${{item.price | number : 2}}</span>
+                            <ul class="stars">
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                                <li><i class="fa fa-star"></i></li>
+                            </ul>
+                            <div class="quantity-content">
+                                <div class="left-content">
+                                    <h6>No. of Orders</h6>
+                                </div>
+                                <div class="right-content">
+                                    <input type="number" min="1" ng-change="cart.saveToLocalStorage()"
+                                        ng-model="item.qty">
+                                </div>
+                            </div>
+                            <div class="quantity-content">
+                                <div class="left-content">
+                                    <h6>Please choose size</h6>
+                                </div>
+                                <div class="right-content">
+                                    <select name="size" id="" ng-model="item.size"
+                                        ng-change="cart.saveToLocalStorage()">
+                                        <option ng-field="S">S</option>
+                                        <option ng-field="M">M</option>
+                                        <option ng-field="L">L</option>
+                                        <option ng-field="XL">XL</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="total">
+                                <h4>Total: ${{item.qty*item.price | number : 2}}</h4>
+                                <div class="main-border-button"><a th:attr="ng-click=@{|cart.remove(item.id)|}"><i
+                                            class="fa fa-trash"></i></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="total">
+                    <div class="main-border-button"><a th:href="@{/order/checkout}">Check Out</a></div>
+                </div>
+            </div>
+        </section>
+        <!-- ***** Product Area Ends ***** -->
+    </main>
+</body>
+
+</html>
